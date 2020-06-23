@@ -26,10 +26,10 @@ class Character {
     // image | coords (x,y) | dimensions (w,h) | coords in the image | display dimensions
     image(this.image, 0, height - 135, 110, 135, this.matriz[this.currentFrame][0], this.matriz[this.currentFrame][1], 220, 270);
 
-    this.animation();
+    this.animate();
   }
 
-  animation() {
+  animate() {
     this.currentFrame++;
 
     if (this.currentFrame >= this.matriz.length - 1) {
