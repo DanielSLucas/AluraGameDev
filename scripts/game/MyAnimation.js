@@ -11,9 +11,9 @@ class MyAnimation {
     this.matriz = matriz;
     this.image = image;
     this.positionX = positionX;
-    this.positionY = height - this.characterHeight;
     this.characterWidth = characterWidth;
     this.characterHeight = characterHeight;
+    this.positionY = height - this.characterHeight;
     this.spriteWidth = spriteWidth;
     this.spriteHeight = spriteHeight;
     
