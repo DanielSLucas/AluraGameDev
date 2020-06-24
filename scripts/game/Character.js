@@ -51,9 +51,9 @@ class Character extends MyAnimation {
   isColliding(enemy) {
 
     // HITBOXES
-    noFill()
-    rect(this.positionX, this.positionY, this.characterWidth, this.characterHeight);
-    rect(enemy.positionX, enemy.positionY, enemy.characterWidth, enemy.characterHeight,)
+    // noFill()
+    // rect(this.positionX, this.positionY, this.characterWidth, this.characterHeight);
+    // rect(enemy.positionX, enemy.positionY, enemy.characterWidth, enemy.characterHeight,)
 
     const precision = .7;
 
