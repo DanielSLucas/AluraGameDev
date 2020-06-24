@@ -3,6 +3,7 @@ class Character extends MyAnimation {
     matriz, 
     image, 
     positionX,
+    variationY,
     characterWidth, 
     characterHeight, 
     spriteWidth, 
@@ -12,21 +13,29 @@ class Character extends MyAnimation {
       matriz, 
       image, 
       positionX,
+      variationY,
       characterWidth, 
       characterHeight, 
       spriteWidth, 
       spriteHeight,
     );
 
-    this.startYPosition = height - this.characterHeight;
+    this.variationY = variationY;
+    this.startYPosition = height - this.characterHeight - this.variationY;
     this.positionY = this.startYPosition;
 
     this.jumpSpeed = 0;
-    this.gravity = 3;
+    this.gravity = 6;
+    this.jumpHeight = -50;
+    this.jumps = 0
   }
 
   jump() {
-    this.jumpSpeed = - 30;
+    if (this.jumps < 2) {
+      this.jumpSpeed = this.jumpHeight;
+      this.jumps++;
+    }
+
   }
 
   applyGravity() {
@@ -35,15 +44,16 @@ class Character extends MyAnimation {
 
     if (this.positionY > this.startYPosition) {
       this.positionY = this.startYPosition;
+      this.jumps = 0;
     }
   }
 
   isColliding(enemy) {
 
     // HITBOXES
-    // noFill()
-    // rect(this.positionX, this.positionY, this.characterWidth, this.characterHeight);
-    // rect(enemy.positionX, enemy.positionY, enemy.characterWidth, enemy.characterHeight,)
+    noFill()
+    rect(this.positionX, this.positionY, this.characterWidth, this.characterHeight);
+    rect(enemy.positionX, enemy.positionY, enemy.characterWidth, enemy.characterHeight,)
 
     const precision = .7;
 

@@ -3,6 +3,7 @@ class MyAnimation {
     matriz, 
     image, 
     positionX,
+    variationY,
     characterWidth, 
     characterHeight, 
     spriteWidth, 
@@ -11,9 +12,10 @@ class MyAnimation {
     this.matriz = matriz;
     this.image = image;
     this.positionX = positionX;
+    this.variationY = variationY;
     this.characterWidth = characterWidth;
     this.characterHeight = characterHeight;
-    this.positionY = height - this.characterHeight;
+    this.positionY = height - this.characterHeight - this.variationY;
     this.spriteWidth = spriteWidth;
     this.spriteHeight = spriteHeight;
     

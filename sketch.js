@@ -2,10 +2,13 @@
 let backgroundImage;
 let characterImage;
 let enemyImage;
+let biggerEnemyImage;
+let flyingEnemyImage;
+let gameOverImage;
 
 let scenario;
 let character;
-let enemy;
+let score;
 
 let backgroundSound;
 let jumpSound;
@@ -61,12 +64,65 @@ const matrizPersonagem = [
   [660, 810]
 ];
 
+const matrizInimigoGrande = [
+  [0,0],
+  [400,0],
+  [800,0],
+  [1200,0],
+  [1600,0],
+  [0,400],
+  [400,400],
+  [800,400],
+  [1200, 400],
+  [1600, 400],
+  [0,800],
+  [400, 800],
+  [800, 800],
+  [1200, 800],
+  [1600, 800],
+  [0, 1200],
+  [400, 1200],
+  [800, 1200],
+  [1200, 1200],
+  [1600, 1200], 
+  [0, 1600],
+  [400, 1600],
+  [800, 1600],
+  [1200, 1600],
+  [1600, 1600],
+  [0, 2000],
+  [400, 2000],
+  [800, 2000],
+]
 
+const matrizInimigoVoador = [
+  [0,0],
+  [200, 0],
+  [400, 0],
+  [0, 150],
+  [200, 150],
+  [400, 150],
+  [0, 300],
+  [200, 300],
+  [400, 300],
+  [0, 450],
+  [200, 450],
+  [400, 450],
+  [0, 600],
+  [200, 600],
+  [400, 600],
+  [0, 750],
+]
+
+const enemies = [];
 // Faz um pré carregamento dos recursos que iremos utilizar no jogo
 function preload() {
   backgroundImage = loadImage('imagens/cenario/floresta.png');
   characterImage = loadImage('imagens/personagem/correndo.png');
   enemyImage = loadImage('imagens/inimigos/gotinha.png');
+  biggerEnemyImage = loadImage('imagens/inimigos/troll.png');
+  flyingEnemyImage = loadImage('imagens/inimigos/gotinha-voadora.png');
+  gameOverImage = loadImage('imagens/assets/game-over.png');
 
   backgroundSound = loadSound('sons/trilha_jogo.mp3');
   jumpSound = loadSound('sons/somPulo.mp3');
@@ -77,8 +133,16 @@ function setup() {
   createCanvas(500, 500); // windowWidth, windowHeight
 
   scenario = new Scenario(backgroundImage, 3);
-  character = new Character(matrizPersonagem, characterImage, 0, 110, 135, 220, 270);
-  enemy = new Enemy(matrizInimigo, enemyImage, width - 52, 52, 52, 104, 104);
+  score = new Score();
+
+  character = new Character(matrizPersonagem, characterImage, 0, 30, 110, 135, 220, 270);
+  const enemy = new Enemy(matrizInimigo, enemyImage, width - 52, 30, 52, 52, 104, 104, 10, 200);
+  const biggerEnemy = new Enemy(matrizInimigoGrande, biggerEnemyImage, width*2, 0, 200, 200, 400, 400, 10, 2500);
+  const flyingEnemy = new Enemy(matrizInimigoVoador, flyingEnemyImage, width - 52, 200, 100, 75, 200, 150, 10, 1500)
+
+  enemies.push(enemy);
+  enemies.push(biggerEnemy);
+  enemies.push(flyingEnemy);
 
   frameRate(40);
   // backgroundSound.loop();
@@ -99,16 +163,24 @@ function draw() {
   
   scenario.show();
   scenario.move();
+
+  score.show();
+  score.addScore();
   
   character.show();
   character.applyGravity();
 
-  enemy.show();
-  enemy.move();
+  enemies.forEach( singleEnemy => {
+    singleEnemy.show();
+    singleEnemy.move();
+    
+    if (character.isColliding(singleEnemy)) {
+      image(gameOverImage, width/2 - 200, height/3);
+      noLoop();
+    }
+  });
 
-  if (character.isColliding(enemy)) {
-    console.log('Ai!')
-    noLoop();
-  }
+
+  
 }
 
