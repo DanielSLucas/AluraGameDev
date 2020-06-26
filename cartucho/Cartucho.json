@@ -1,0 +1,24 @@
+{
+  "config": {
+    "maxHealth": 3,
+    "startHealth": 3
+  },
+  "gameMap": [
+    {
+      "enemy": 0,
+      "speed": 10
+    },
+    {
+      "enemy": 1,
+      "speed": 20
+    },
+    {
+      "enemy": 1,
+      "speed": 15
+    },
+    {
+      "enemy": 2,
+      "speed": 30
+    }
+  ]
+}

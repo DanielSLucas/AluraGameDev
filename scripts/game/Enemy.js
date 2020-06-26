@@ -9,7 +9,6 @@ class Enemy extends MyAnimation {
     spriteWidth, 
     spriteHeight,
     speed,
-    delay,
   ) {
     super(
       matriz, 
@@ -23,15 +22,18 @@ class Enemy extends MyAnimation {
     );
 
     this.speed = speed;
-    this.delay = delay;
-    this.positionX = width + this.delay;
+    this.positionX = width;
   }
 
   move() {
     this.positionX = this.positionX - this.speed;
 
-    if( this.positionX < -this.characterWidth - this.delay) {
-      this.positionX = width;
-    }
+    // if( this.positionX < -this.characterWidth) {
+    //   this.positionX = width;
+    // }
+  }
+
+  goBack() {
+    this.positionX = width;
   }
 }

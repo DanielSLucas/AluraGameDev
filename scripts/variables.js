@@ -7,6 +7,7 @@ let flyingEnemyImage;
 let gameOverImage;
 let homeScreenImage;
 let homeScreenFont;
+let heartImage;
 
 let homeScreen;
 let game;
@@ -15,6 +16,9 @@ let manegerButton;
 let scenario;
 let character;
 let score;
+let health;
+
+let cartucho;
 
 let backgroundSound;
 let jumpSound;

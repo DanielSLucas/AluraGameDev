@@ -1,6 +1,6 @@
 // 
 function setup() {
-  createCanvas(windowWidth, windowHeight); // windowWidth, windowHeight
+  createCanvas(500, 500); // windowWidth, windowHeight
 
   game = new Game();
   game.setup();
@@ -10,7 +10,7 @@ function setup() {
   manegerButton = new ManagerButton('Iniciar', width/2, height/2);
 
   frameRate(40);
-  backgroundSound.loop();
+  // backgroundSound.loop();
 
   scenes = {
     game,

@@ -28,6 +28,7 @@ class Character extends MyAnimation {
     this.gravity = 6;
     this.jumpHeight = -50;
     this.jumps = 0
+    this.invulnerable = false;
   }
 
   jump() {
@@ -48,7 +49,18 @@ class Character extends MyAnimation {
     }
   }
 
+  becomeInvulnerable() {
+    this.invulnerable = true;
+    setTimeout(() => {
+      this.invulnerable = false
+    }, 1000);
+  }
+
   isColliding(enemy) {
+
+    if (this.invulnerable) {
+      return false;
+    }
 
     // HITBOXES
     // noFill()
